@@ -1,0 +1,7 @@
+--- SCHEDA POKÉMON ---
+Nome: pikachu
+Numero: 25
+Tipo: electric
+Altezza: 0.4
+Peso: 6.0
+Esperinza: 112
