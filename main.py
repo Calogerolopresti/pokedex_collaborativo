@@ -1,16 +1,30 @@
-# This is a sample Python script.
+# main.py — fornito dal professore
+from poke_api  import scarica_pokemon
+from poke_info import estrai_info
+from poke_file import salva_scheda
+import time
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+if __name__ == "__main__":
+    print("=== POKÉDEX COLLABORATIVO ===")
+    print()
+    while True:
 
+        nome=input("Inserisci il nome di un pokemon o exit per uscire: ")
+        nome=nome.strip().lower()
+        if nome=="exit":
+            print("Termino il programma, arrivederci!")
+            break
+        print(f"Cerco {nome}...")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+        dati_grezzi = scarica_pokemon(nome)
 
+        if dati_grezzi is None:
+            print(f"  {nome}: impossibile scaricare i dati")
+        else:
+            info      = estrai_info(dati_grezzi)
+            nome_file = nome + ".txt"
+            salva_scheda(info, nome_file)
+            print(f"  Salvato: {nome_file}")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print()
+    print("Finito! Controlla i file .txt nella cartella.")
